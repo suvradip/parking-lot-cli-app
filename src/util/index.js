@@ -4,6 +4,9 @@ function validateNumber(value) {
    return false;
 }
 
+function validateRegNoFormat() {}
+
 module.exports = {
    validateNumber,
+   validateRegNoFormat,
 };
