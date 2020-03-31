@@ -6,7 +6,12 @@ npm install
 # Run the unit test cases
 npm test
 
-npm install -g .
+echo ""
+echo "Installing this app globally in your system."
+echo ""
 
-echo "All the dependencies installed."
+npm install -g . && echo "All the dependencies installed."
 
+echo ""
+echo ""
+echo "If installation failed then please run the app by npm start and follow the readme.md file."
