@@ -1,6 +1,6 @@
 const colors = require('colors');
-const Car = require('./Car');
-const Space = require('./Space');
+const Car = require('./models/Car');
+const Space = require('./models/Space');
 
 function search(data, size, fields) {
    const [[key, value]] = Object.entries(fields);
@@ -11,8 +11,6 @@ function search(data, size, fields) {
          filteredData.push({
             ...space,
          });
-
-         if (space.car[key] === 'regNo') break;
       }
    }
 
@@ -91,7 +89,7 @@ class ParkingLot {
          if (!this.space.get(slotNumber).availability) {
             this.space.get(slotNumber).car = null;
             this.space.get(slotNumber).availability = true;
-            console.log(`Slot No. ${slotNumber} is available for parking new vehicle now`);
+            console.log(`Slot No. ${slotNumber} is free`);
          } else {
             console.log(`There is no vehicle parked at ${slotNumber}`.red);
          }
@@ -110,13 +108,25 @@ class ParkingLot {
       }
    }
 
-   carsWithRegNo(regNo) {
+   getSlotsByRegNo(regNo) {
       if (typeof regNo === 'undefined') {
          console.log(colors.yellow('Registration number is missing as a parameter.'));
       } else if (this.spaceSize === 0) {
          console.log(colors.yellow('Parking lot is not created.'));
       } else {
          const result = search(this.space, this.spaceSize, { regNo });
+         if (result.length === 0) console.log('Not found');
+         console.log(colors.green(Array.prototype.map.call(result, (item) => item.slotId).join(', ')));
+      }
+   }
+
+   getSlotNoByColor(color) {
+      if (typeof color === 'undefined') {
+         console.log(colors.yellow('Color is missing as a parameter.'));
+      } else if (this.spaceSize === 0) {
+         console.log(colors.yellow('Parking lot is not created.'));
+      } else {
+         const result = search(this.space, this.spaceSize, { color });
          if (result.length === 0) console.log('Not found');
          console.log(colors.green(Array.prototype.map.call(result, (item) => item.slotId).join(', ')));
       }

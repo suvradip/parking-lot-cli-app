@@ -35,7 +35,7 @@ describe('Parking lot', () => {
    it('should can unpark a car', () => {
       instance.parkCar('park KA-04-TH-1341', 'White');
       instance.leaveCar(1);
-      expect(logSpy).toHaveBeenCalledWith('Slot No. 1 is available for parking new vehicle now');
+      expect(logSpy).toHaveBeenCalledWith('Slot No. 1 is free');
    });
 
    it('should find car by color', () => {
@@ -46,10 +46,15 @@ describe('Parking lot', () => {
       expect(logSpy).toHaveBeenCalledWith('WB-142-TYH-9341, MH-Y42-601-1S41');
    });
 
-   it('should find car registration number', () => {
-      instance.carsWithRegNo('WB-142-TYH-9341');
+   it('should find slot number by car registration number', () => {
+      instance.getSlotsByRegNo('WB-142-TYH-9341');
       expect(logSpy).toHaveBeenCalledWith('1');
-      instance.carsWithRegNo('NA-000-000');
+      instance.getSlotsByRegNo('NA-000-000');
       expect(logSpy).toHaveBeenCalledWith('Not found');
+   });
+
+   it('should find slot number by car colour', () => {
+      instance.getSlotNoByColor('Red');
+      expect(logSpy).toHaveBeenCalledWith('1, 4');
    });
 });
