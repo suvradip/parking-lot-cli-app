@@ -23,8 +23,10 @@ class ParkingLot {
       this.spaceSize = 0;
    }
 
-   createParkingLot(size) {
-      if (this.spaceSize === 0) {
+   createParkingLot(size = 0) {
+      if (size <= 0) {
+         console.log(colors.yellow(`Please provide a valid parking lot size. `));
+      } else if (this.spaceSize === 0) {
          for (let i = 0; i < size; i += 1) {
             const slotNumber = i + 1;
             this.space.set(slotNumber, new Space(slotNumber));
@@ -50,9 +52,9 @@ class ParkingLot {
       return slot;
    }
 
-   parkCar(regNumber, color) {
+   parkCar(regNumber = '', color = '') {
       const nearestSlot = this.nearestSlotNumber;
-      if (typeof regNumber === 'undefined' || typeof color === 'undefined') {
+      if (regNumber === '' || color === '') {
          console.log(colors.yellow('Registration number or color or both are missing.'));
       } else if (this.spaceSize === 0) {
          console.log(colors.yellow('Parking lot is not created.'));
@@ -80,8 +82,8 @@ class ParkingLot {
       }
    }
 
-   leaveCar(slotNumber) {
-      if (typeof slotNumber === 'undefined') {
+   leaveCar(slotNumber = '') {
+      if (slotNumber === '') {
          console.log(colors.yellow('Slot number is missing as a parameter.'));
       } else if (this.spaceSize === 0) {
          console.log(colors.yellow('Parking lot is not created.'));
@@ -96,8 +98,8 @@ class ParkingLot {
       }
    }
 
-   carsWithColor(color) {
-      if (typeof color === 'undefined') {
+   carsWithColor(color = '') {
+      if (color === '') {
          console.log(colors.yellow('Color is missing as a parameter.'));
       } else if (this.spaceSize === 0) {
          console.log(colors.yellow('Parking lot is not created.'));
@@ -108,8 +110,8 @@ class ParkingLot {
       }
    }
 
-   getSlotsByRegNo(regNo) {
-      if (typeof regNo === 'undefined') {
+   getSlotsByRegNo(regNo = '') {
+      if (regNo === '') {
          console.log(colors.yellow('Registration number is missing as a parameter.'));
       } else if (this.spaceSize === 0) {
          console.log(colors.yellow('Parking lot is not created.'));
@@ -120,8 +122,8 @@ class ParkingLot {
       }
    }
 
-   getSlotNoByColor(color) {
-      if (typeof color === 'undefined') {
+   getSlotNoByColor(color = '') {
+      if (color === '') {
          console.log(colors.yellow('Color is missing as a parameter.'));
       } else if (this.spaceSize === 0) {
          console.log(colors.yellow('Parking lot is not created.'));
