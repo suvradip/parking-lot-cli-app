@@ -1,3 +1,6 @@
+/**
+ * A space in a Parking lot
+ */
 class Space {
    constructor(slotId, available = true) {
       this.slotId = slotId;

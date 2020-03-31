@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 const colors = require('colors');
 const readline = require('readline');
 const fs = require('fs');
@@ -6,12 +7,18 @@ const { validateNumber } = require('./util/index');
 
 const parkingLot = new ParkingLot();
 
+/**
+ * Command prompt interface
+ */
 const rl = readline.createInterface({
    input: process.stdin,
    output: process.stdout,
    terminal: false,
 });
 
+/**
+ * Welcome message when running it via cli
+ */
 const displayInfo = () => {
    console.log(`List of supported commands are -`);
    console.log('');
@@ -26,12 +33,18 @@ const displayInfo = () => {
    console.log('Please enter your command\n');
 };
 
+/**
+ * Prompt interface
+ * stay in a loop if exit command not entered
+ * @param {string} input text provided by user
+ */
 const operations = (input) => {
    //  console.log(colors.cyan(`> ${input}`));
    const command = input.split(' ');
    switch (command[0]) {
       case 'create_parking_lot':
          try {
+            /* making sure input is integer */
             if (validateNumber(command[1])) {
                parkingLot.createParkingLot(parseInt(command[1], 10));
             } else {
@@ -136,6 +149,7 @@ if (process.argv.length < 3) {
    takeInputs('\n$ ', operations);
 } else {
    const file = process.argv[2];
+   /* reading the content of the file and breaking each line into an array */
    const contents = fs.readFileSync(file, 'utf8');
    const lines = contents.split('\n');
    lines.forEach((line) => typeof line !== 'undefined' && line !== '' && operations(line));
