@@ -89,7 +89,7 @@ class ParkingLot {
          if (!this.space.get(slotNumber).availability) {
             this.space.get(slotNumber).car = null;
             this.space.get(slotNumber).availability = true;
-            console.log(`Slot No. ${slotNumber} is free`);
+            console.log(colors.green(`Slot number ${slotNumber} is free`));
          } else {
             console.log(`There is no vehicle parked at ${slotNumber}`.red);
          }
