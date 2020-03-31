@@ -3,7 +3,7 @@ const path = require('path');
 const { spawn } = require('child_process');
 
 const ops = () => {
-   const inputFile = path.resolve(__dirname, 'data', 'input.txt');
+   const inputFile = path.resolve(__dirname, 'data', 'file_inputs.txt');
    const cliApp = path.resolve(__dirname, '..', 'src', 'index.js');
    const app = spawn('node', [cliApp, inputFile, '--no-color']);
 

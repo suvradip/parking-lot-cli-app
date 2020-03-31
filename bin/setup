@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# Install dependencies
+npm install
+
+# Run the unit test cases
+npm test
+
+npm install -g .
+
+echo "All the dependencies installed."
+
